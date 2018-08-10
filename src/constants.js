@@ -1,0 +1,3 @@
+export const RESET_APP = 'RESET_APP';
+
+export const ARTICLES_FETCHED = 'ARTICLES_FETCHED';

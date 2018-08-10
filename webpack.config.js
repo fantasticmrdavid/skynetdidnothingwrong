@@ -1,12 +1,19 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const env = process.env.NODE_ENV ? process.env.NODE_ENV : false;
-const api_url = process.env.API_URL ? process.env.API_URL : false;
-
 const BUILD_DIR = path.resolve(__dirname, 'public');
 const APP_DIR = path.resolve(__dirname, 'src');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {
+  NODE_ENV,
+  API_URL,
+  FIREBASE_API_KEY,
+  FIREBASE_AUTH_DOMAIN,
+  FIREBASE_DB_URL,
+  FIREBASE_PROJECT_ID,
+  FIREBASE_STORAGE_BUCKET,
+  FIREBASE_MESSAGING_SENDER_ID,
+} = process.env;
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: `${APP_DIR}/index.html`,
@@ -50,8 +57,14 @@ module.exports = {
     HtmlWebpackPluginConfig,
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(env),
-        API_URL: JSON.stringify(api_url),
+        NODE_ENV: JSON.stringify(NODE_ENV),
+        API_URL: JSON.stringify(API_URL),
+        FIREBASE_API_KEY: JSON.stringify(FIREBASE_API_KEY),
+        FIREBASE_AUTH_DOMAIN: JSON.stringify(FIREBASE_AUTH_DOMAIN),
+        FIREBASE_DB_URL: JSON.stringify(FIREBASE_DB_URL),
+        FIREBASE_PROJECT_ID: JSON.stringify(FIREBASE_PROJECT_ID),
+        FIREBASE_STORAGE_BUCKET: JSON.stringify(FIREBASE_STORAGE_BUCKET),
+        FIREBASE_MESSAGING_SENDER_ID: JSON.stringify(FIREBASE_MESSAGING_SENDER_ID),
       },
     }),
   ],
