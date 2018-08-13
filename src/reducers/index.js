@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { RESET_APP } from 'Constants';
 import { firebaseReducer } from 'react-redux-firebase';
+import { RESET_APP } from 'Constants';
 
 const appReducers = combineReducers({
   firebase: firebaseReducer,

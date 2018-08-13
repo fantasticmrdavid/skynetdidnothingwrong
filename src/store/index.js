@@ -1,22 +1,27 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import firebase from 'firebase/app';
-import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
+import { reduxFirebase, getFirebase } from 'react-redux-firebase';
 import reducers from 'reducers';
+import 'firebase/database';
 
 const {
   NODE_ENV,
+  FIREBASE_PROJECT_ID,
   FIREBASE_API_KEY,
   FIREBASE_AUTH_DOMAIN,
   FIREBASE_DB_URL,
   FIREBASE_STORAGE_BUCKET,
+  FIREBASE_MESSAGING_SENDER_ID,
 } = process.env;
 
 const firebaseConfig = {
   apiKey: FIREBASE_API_KEY,
   authDomain: FIREBASE_AUTH_DOMAIN,
   databaseURL: FIREBASE_DB_URL,
+  projectId: FIREBASE_PROJECT_ID,
   storageBucket: FIREBASE_STORAGE_BUCKET,
+  messageSenderId: FIREBASE_MESSAGING_SENDER_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -30,7 +35,7 @@ const middleware = applyMiddleware(thunk.withExtraArgument(getFirebase));
 // Add redux Firebase to compose
 const createStoreWithFirebase = composeEnhancersClient(
   middleware,
-  reactReduxFirebase(firebase, { userProfile: 'users' }),
+  reduxFirebase(firebase, { userProfile: 'users' }),
 )(createStore);
 
 // Create store with reducers and initial state
