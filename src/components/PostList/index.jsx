@@ -4,7 +4,7 @@ import Post from 'components/Post';
 
 const PostList = ({ posts }) => {
   return (
-    <ul>{posts.map(p => <li><Post {...p} key={`post_${p.id}`} /></li>)}</ul>
+    <ul>{posts.map(p => <li key={`post_${p.id}`}><Post {...p} /></li>)}</ul>
   );
 };
 

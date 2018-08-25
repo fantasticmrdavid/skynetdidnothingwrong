@@ -2,6 +2,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import firebase from 'firebase/app';
 import { reduxFirebase, getFirebase } from 'react-redux-firebase';
+import createHistory from 'history/createBrowserHistory';
+import { routerMiddleware } from 'react-router-redux';
 import reducers from 'reducers';
 import 'firebase/database';
 
@@ -26,11 +28,17 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+const history = createHistory();
+const routerHistoryMiddleware = routerMiddleware(history);
+
 const composeEnhancersClient = NODE_ENV === 'development' && !!window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   : compose;
 
-const middleware = applyMiddleware(thunk.withExtraArgument(getFirebase));
+const middleware = applyMiddleware(
+  thunk.withExtraArgument(getFirebase),
+  routerHistoryMiddleware,
+);
 
 // Add redux Firebase to compose
 const createStoreWithFirebase = composeEnhancersClient(
@@ -41,4 +49,4 @@ const createStoreWithFirebase = composeEnhancersClient(
 // Create store with reducers and initial state
 const store = createStoreWithFirebase(reducers);
 
-export { store };
+export { store, history };
