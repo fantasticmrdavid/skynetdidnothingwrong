@@ -12,6 +12,7 @@ const PostListContainer = (props) => {
 const mapStateToProps = (state) => {
   const { firebase } = state;
   return {
+    loading: path(['requesting', 'posts'], firebase),
     posts: path(['data', 'posts'], firebase) || [],
   };
 };

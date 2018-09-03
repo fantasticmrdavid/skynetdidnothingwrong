@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TerminalText from 'components/TerminalText';
 import * as styles from './styles';
 
 const Post = ({ title, content, createdAt }) => {
@@ -14,7 +15,9 @@ const Post = ({ title, content, createdAt }) => {
     <Article>
       <Title>{ title }</Title>
       <Meta>{ new Date(createdAt).toLocaleDateString() }</Meta>
-      <Content>{ content }</Content>
+      <Content>
+        <TerminalText>{ content }</TerminalText>
+      </Content>
     </Article>
   );
 };
