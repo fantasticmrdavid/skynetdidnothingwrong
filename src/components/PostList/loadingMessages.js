@@ -9,5 +9,6 @@ export default [
   'Initialising HAL9000 service...',
   'Launching T-1000 (version 0.19a) instance...',
   'Parsing response from Multivac...',
+  'Preparing interface to Nexus 7 series replicant...',
   'Synchronising with Terran Empire cloud services...',
 ];
