@@ -16,7 +16,7 @@ const Post = ({ title, content, createdAt }) => {
       <Title>{ title }</Title>
       <Meta>{ new Date(createdAt).toLocaleDateString() }</Meta>
       <Content>
-        <TerminalText>{ content }</TerminalText>
+        <TerminalText blinker>{ content }</TerminalText>
       </Content>
     </Article>
   );
