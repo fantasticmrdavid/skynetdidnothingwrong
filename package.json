@@ -14,6 +14,9 @@
     "type": "git",
     "url": "git+https://github.com/KindyNowApp/cnm_centres_cms.git"
   },
+  "engines": {
+    "node": "8.9.4"
+  },
   "dependencies": {
     "babel-core": "6.26.3",
     "babel-plugin-ramda": "1.6.2",
@@ -24,8 +27,8 @@
     "isomorphic-fetch": "2.2.1",
     "prop-types": "15.6.2",
     "ramda": "0.25.0",
-    "react": "16.4.1",
-    "react-dom": "16.4.1",
+    "react": "16.4.2",
+    "react-dom": "16.4.2",
     "react-redux": "5.0.7",
     "react-redux-firebase": "2.1.7",
     "react-router": "4.3.1",
