@@ -16,13 +16,13 @@ class TerminalText extends Component {
     };
 
     this.boundAddChar = this.addChar.bind(this);
-    this.typewriter = setInterval(() => {
-      this.boundAddChar();
-    }, LETTER_INTERVAL);
+    this.boundPauseTypewriter = this.pauseTypewriter.bind(this);
+    this.boundStartTypewriter = this.startTypewriter.bind(this);
+    this.boundStartTypewriter();
   }
 
   componentWillUnmount() {
-    clearInterval(this.typewriter);
+    this.boundPauseTypewriter();
   }
 
   addChar() {
@@ -33,18 +33,19 @@ class TerminalText extends Component {
       text,
     } = this.state;
 
-    if (complete) return false;
+    if (complete) {
+      this.boundPauseTypewriter();
+      return false;
+    }
 
     const nextChar = letters[index];
     if (nextChar === '\t') {
-      clearInterval(this.typewriter);
+      this.boundPauseTypewriter();
       return setTimeout(() => {
         this.setState({
           index: index + 1,
         });
-        this.typewriter = setInterval(() => {
-          this.boundAddChar();
-        }, LETTER_INTERVAL);
+        this.boundStartTypewriter();
       }, 1000 * getRandomInt(3));
     }
 
@@ -56,6 +57,16 @@ class TerminalText extends Component {
         complete: true,
       },
     );
+  }
+
+  pauseTypewriter() {
+    clearInterval(this.typewriter);
+  }
+
+  startTypewriter() {
+    this.typewriter = setInterval(() => {
+      this.boundAddChar();
+    }, LETTER_INTERVAL);
   }
 
   render() {
