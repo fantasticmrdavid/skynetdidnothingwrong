@@ -8,6 +8,14 @@ class LogStory extends Component {
   constructor() {
     super();
     const story = getRandomElement(storyData);
+    this.boundLoadNewStory = this.loadNewStory.bind(this);
+    this.state = {
+      story: story.content.reduce((acc, l) => acc.concat(`\n${l}`)),
+    };
+  }
+
+  loadNewStory() {
+    const story = getRandomElement(storyData);
     this.state = {
       story: story.content.reduce((acc, l) => acc.concat(`\n${l}`)),
     };
@@ -18,7 +26,7 @@ class LogStory extends Component {
     const { Story } = styles;
     return (
       <Story>
-        <TerminalText blinker>{ story }</TerminalText>
+        <TerminalText blinker resetOnComplete onComplete={this.boundLoadNewStory}>{ story }</TerminalText>
       </Story>
     );
   }

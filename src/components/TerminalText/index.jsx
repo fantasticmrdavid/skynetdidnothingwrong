@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Blinker from 'components/Blinker';
 import { getRandomInt } from 'helpers/number';
+import * as styles from './styles';
 
 const LETTER_INTERVAL = 30;
 
@@ -36,9 +37,23 @@ class TerminalText extends Component {
       text,
     } = this.state;
 
+    const { children, onComplete } = this.props;
+
     if (complete) {
       this.boundPauseTypewriter();
-      return false;
+      setTimeout(() => {
+        onComplete();
+        this.setState({
+          text: <Fragment />,
+          index: 0,
+          letters: children.split(''),
+          currentLine: '',
+          complete: false,
+          paused: false,
+        });
+        this.boundStartTypewriter();
+        return true;
+      }, 2000);
     }
 
     const nextChar = letters[index];
@@ -50,7 +65,7 @@ class TerminalText extends Component {
           index: index + 1,
         });
         this.boundStartTypewriter();
-      }, 1000 * getRandomInt(3));
+      }, 1000 * getRandomInt(2));
     }
 
     return this.setState(index < letters.length ?
@@ -84,18 +99,22 @@ class TerminalText extends Component {
       paused,
       text,
     } = this.state;
-    const { blinker } = this.props;
+    const { blinker, resetOnComplete } = this.props;
+    const { Terminal } = styles;
+
     return (
-      <Fragment>
+      <Terminal reset={complete && resetOnComplete}>
         {text}{currentLine}
         {blinker && <Blinker solid={!complete && !paused} />}
-      </Fragment>);
+      </Terminal>);
   }
 }
 
 TerminalText.propTypes = {
   children: PropTypes.node.isRequired,
   blinker: PropTypes.bool,
+  onComplete: PropTypes.func,
+  resetOnComplete: PropTypes.bool,
 };
 
 export default TerminalText;
