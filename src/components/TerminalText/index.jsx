@@ -12,6 +12,7 @@ class TerminalText extends Component {
       text: <Fragment />,
       index: 0,
       letters: props.children.split(''),
+      currentLine: '',
       complete: false,
       paused: false,
     };
@@ -29,6 +30,7 @@ class TerminalText extends Component {
   addChar() {
     const {
       complete,
+      currentLine,
       index,
       letters,
       text,
@@ -40,6 +42,7 @@ class TerminalText extends Component {
     }
 
     const nextChar = letters[index];
+
     if (nextChar === '\t') {
       this.boundPauseTypewriter();
       return setTimeout(() => {
@@ -52,7 +55,8 @@ class TerminalText extends Component {
 
     return this.setState(index < letters.length ?
       {
-        text: <Fragment>{text}{(nextChar === '\n' ? <br /> : nextChar)}</Fragment>,
+        text: nextChar === '\n' ? <Fragment>{text}{currentLine}<br /></Fragment> : <Fragment>{text}</Fragment>,
+        currentLine: nextChar === '\n' ? '' : `${currentLine}${nextChar}`,
         index: index + 1,
       } : {
         complete: true,
@@ -74,11 +78,16 @@ class TerminalText extends Component {
   }
 
   render() {
-    const { complete, paused } = this.state;
+    const {
+      complete,
+      currentLine,
+      paused,
+      text,
+    } = this.state;
     const { blinker } = this.props;
     return (
       <Fragment>
-        {this.state.text}
+        {text}{currentLine}
         {blinker && <Blinker solid={!complete && !paused} />}
       </Fragment>);
   }
