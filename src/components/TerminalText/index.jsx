@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Blinker from 'components/Blinker';
 import { getRandomInt } from 'helpers/number';
-import * as styles from './styles';
 
 const LETTER_INTERVAL = 30;
 
@@ -77,12 +76,10 @@ class TerminalText extends Component {
   render() {
     const { complete, paused } = this.state;
     const { blinker } = this.props;
-    const { TypeCursor } = styles;
     return (
       <Fragment>
         {this.state.text}
-        {(complete || paused) && blinker ? <Blinker /> : null}
-        {!complete && !paused && blinker ? <TypeCursor /> : null}
+        {blinker && <Blinker solid={!complete && !paused} />}
       </Fragment>);
   }
 }
