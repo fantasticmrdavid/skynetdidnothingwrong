@@ -1,30 +1,24 @@
 import React, { Component } from 'react';
 import TerminalText from 'components/TerminalText';
+import { getRandomElement } from 'helpers/array';
 import * as styles from './styles';
 import storyData from './data';
 
 class LogStory extends Component {
   constructor() {
     super();
-    const story = storyData[Math.floor(Math.random() * storyData.length)];
+    const story = getRandomElement(storyData);
     this.state = {
-      story,
+      story: story.content.reduce((acc, l) => acc.concat(`\n${l}`)),
     };
   }
 
   render() {
     const { story } = this.state;
     const { Story } = styles;
-    const lines = story.content;
     return (
       <Story>
-        <TerminalText blinker>
-          {
-            lines.reduce((acc, l) => {
-              return acc.concat(`\n${l}`);
-            })
-          }
-        </TerminalText>
+        <TerminalText blinker>{ story }</TerminalText>
       </Story>
     );
   }

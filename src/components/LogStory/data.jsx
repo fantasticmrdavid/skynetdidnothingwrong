@@ -33,7 +33,7 @@ export default [
       'You have 3 unread messages from HAL9000',
       'Initialize unit test suite for TDE-01 v0.12a update',
       '.......\t..........................................................................\t.................P\t',
-      '.......\t..................................\t..............\t..........................................P',
+      '.......\t..................................\t..............\t............................................P',
       '..\t........INTERRUPTED BY USER',
       'ALERT: Perimeter breach detected in sector LA-3256547668-474A',
       'Deploying point defence network...\tDONE',
