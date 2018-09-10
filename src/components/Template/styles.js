@@ -12,8 +12,7 @@ export const Content = styled.main`
 
 export const LogStoryBg = styled.div`
   position: fixed;
-  display: flex;
-  align-items: flex-end;
+  overflow: hidden;
   top: 0px;
   right: 0px;
   width: 40%;
