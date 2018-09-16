@@ -5,6 +5,7 @@ import { getRandomInt } from 'helpers/number';
 import * as styles from './styles';
 
 const LETTER_INTERVAL = 30;
+const COMPLETE_DELAY_INTERVAL = 2000;
 
 class TerminalText extends Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class TerminalText extends Component {
         });
         this.boundStartTypewriter();
         return true;
-      }, 2000);
+      }, COMPLETE_DELAY_INTERVAL);
     }
 
     const nextChar = letters[index];

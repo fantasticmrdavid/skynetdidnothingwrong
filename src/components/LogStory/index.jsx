@@ -26,7 +26,7 @@ class LogStory extends Component {
     const { Story } = styles;
     return (
       <Story>
-        <TerminalText blinker resetOnComplete onComplete={this.boundLoadNewStory}>{ story }</TerminalText>
+        <TerminalText blinker resetOnComplete onComplete={this.boundLoadNewStory}>{story}</TerminalText>
       </Story>
     );
   }
