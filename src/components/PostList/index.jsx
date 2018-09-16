@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Post from 'components/Post';
-import TerminalText from 'components/TerminalText';
-import loadingMessages from './loadingMessages';
+import LoadingDialog from 'components/LoadingDialog';
 
 class PostList extends Component {
   constructor(props) {
     super(props);
 
     this.boundCheckPostsReady = this.checkPostsReady.bind(this);
-    this.boundLoadNextMessage = this.loadNextMessage.bind(this);
 
     this.state = {
-      loadingMessage: loadingMessages[Math.floor(Math.random() * loadingMessages.length)],
       ready: false,
     };
   }
@@ -24,18 +21,11 @@ class PostList extends Component {
     }
   }
 
-  loadNextMessage() {
-    this.boundCheckPostsReady();
-    this.setState({
-      loadingMessage: loadingMessages[Math.floor(Math.random() * loadingMessages.length)],
-    });
-  }
-
   render() {
-    const { loadingMessage, ready } = this.state;
-    const { posts } = this.props;
+    const { ready } = this.state;
+    const { loading, posts } = this.props;
     if (!ready) {
-      return <TerminalText blinker onComplete={this.boundLoadNextMessage} resetOnComplete>{loadingMessage}</TerminalText>;
+      return <LoadingDialog loading={loading} readyCheck={this.boundCheckPostsReady} />;
     }
     return (
       <ul>{posts.map(p => <li key={`post_${p.id}`}><Post {...p} /></li>)}</ul>

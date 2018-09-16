@@ -25,8 +25,13 @@ class TerminalText extends Component {
     this.boundStartTypewriter();
   }
 
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
   componentWillUnmount() {
     this.boundPauseTypewriter();
+    this._isMounted = false;
   }
 
   addChar() {
@@ -38,21 +43,23 @@ class TerminalText extends Component {
       text,
     } = this.state;
 
-    const { children, onComplete } = this.props;
+    const { children, onComplete, resetOnComplete } = this.props;
 
     if (complete) {
       this.boundPauseTypewriter();
       setTimeout(() => {
-        onComplete();
-        this.setState({
-          text: <Fragment />,
-          index: 0,
-          letters: children.split(''),
-          currentLine: '',
-          complete: false,
-          paused: false,
-        });
-        this.boundStartTypewriter();
+        if (!!onComplete) onComplete();
+        if (this._isMounted && resetOnComplete) {
+          this.setState({
+            text: <Fragment />,
+            index: 0,
+            letters: children.split(''),
+            currentLine: '',
+            complete: false,
+            paused: false,
+          });
+          this.boundStartTypewriter();
+        }
         return true;
       }, COMPLETE_DELAY_INTERVAL);
     }
