@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { confirmReset } from 'styles/animations';
+import { confirmReset, fadeOut } from 'styles/animations';
 
 export const Screen = styled.div`
   position: fixed;
@@ -8,11 +8,14 @@ export const Screen = styled.div`
   top: 0;
   left: 0;
   background: white;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  animation: ${props => (props.complete ? `${fadeOut} 1s normal linear` : undefined)};
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+  z-index: 12;
 `;
 
 export const Content = styled.div`

@@ -72,7 +72,7 @@ class LoadingDialog extends Component {
     const { loadingMessage, complete } = this.state;
 
     return (
-      <Screen>
+      <Screen complete={complete}>
         <Content complete={complete}>
           <LogoContainer>
             <SkynetLogo />
