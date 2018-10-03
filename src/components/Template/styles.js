@@ -8,6 +8,7 @@ export const Container = styled.div`
 export const Content = styled.main`
   width: 100%;
   max-width: 900px;
+  padding-bottom: 3em;
 `;
 
 export const LogStoryBg = styled.div`

@@ -6,6 +6,7 @@ export const Logo = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  transform: scale(${props => (props.size === 'small' ? 0.5 : 1)});
 `;
 
 export const Triangle = styled.div`
@@ -25,7 +26,6 @@ export const ProgressTriangle = Triangle.extend`
 export const Fork = styled.div`
   position: absolute;
   font-family: 'Montserrat';
-  left: 29.5px;
   top: -10px;
   color: white;
   font-size: 65px;

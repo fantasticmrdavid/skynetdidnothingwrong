@@ -5,7 +5,7 @@ import TerminalText from 'components/TerminalText';
 import loadingMessages from './loadingMessages';
 import * as styles from './styles';
 
-const COMPLETE_DELAY_INTERVAL = 1000;
+const COMPLETE_DELAY_INTERVAL = 500;
 
 class LoadingDialog extends Component {
   constructor(props) {

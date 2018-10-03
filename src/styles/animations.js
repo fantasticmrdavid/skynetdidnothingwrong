@@ -43,3 +43,25 @@ export const fadeOut = keyframes`
     z-index: -1;
   }
 `;
+
+export const expand = keyframes`
+  0% {
+    max-height: 0px;
+    overflow: hidden;
+  }
+  100% {
+    max-height: 2000px;
+  }
+`;
+
+export const breatheOpacity = keyframes`
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+`;
