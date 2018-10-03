@@ -43,7 +43,11 @@ class TerminalText extends Component {
       text,
     } = this.state;
 
-    const { children, onComplete, resetOnComplete } = this.props;
+    const {
+      children,
+      onComplete,
+      resetOnComplete,
+    } = this.props;
 
     if (complete) {
       this.boundPauseTypewriter();
@@ -93,10 +97,11 @@ class TerminalText extends Component {
   }
 
   startTypewriter() {
+    const { speed } = this.props;
     const { paused } = this.state;
     this.typewriter = setInterval(() => {
       this.boundAddChar();
-    }, LETTER_INTERVAL);
+    }, speed || LETTER_INTERVAL);
     if (paused) this.setState({ paused: false });
   }
 
@@ -123,6 +128,7 @@ TerminalText.propTypes = {
   blinker: PropTypes.bool,
   onComplete: PropTypes.func,
   resetOnComplete: PropTypes.bool,
+  speed: PropTypes.number,
 };
 
 export default TerminalText;

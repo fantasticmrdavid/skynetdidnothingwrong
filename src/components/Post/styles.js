@@ -13,6 +13,7 @@ export const Article = styled.article`
 
 export const Content = styled.section`
   padding: 1em 0;
+  line-height: 1.5;
 `;
 
 export const Meta = styled.section`
