@@ -20,7 +20,7 @@ export const Triangle = styled.div`
 export const ProgressTriangle = Triangle.extend`
   position: absolute;
   top: 0;
-  border-bottom-color: tomato;
+  border-bottom-color: #da3a1d;
 `;
 
 export const Fork = styled.div`

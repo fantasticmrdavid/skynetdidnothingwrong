@@ -49,7 +49,8 @@ export const Signature = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-family: 'Teko', sans-serif;
+  font-size: 2rem;
   padding: 0.5em 0;
+  color: #da3a1d;
 `;
