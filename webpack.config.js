@@ -18,10 +18,11 @@ const {
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: `${APP_DIR}/index.html`,
   filename: 'index.html',
-  inject: 'body',
 });
 
 const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
   entry: `${APP_DIR}/index.jsx`,
@@ -39,15 +40,15 @@ module.exports = {
     },
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
-        loaders: ['babel-loader', 'eslint-loader'],
+        use: ['babel-loader', 'eslint-loader'],
         exclude: /node_modules/,
       },
       {
         test: /\.(png|jpg|gif)$/,
-        loaders: ['url-loader', 'file-loader'],
+        use: ['url-loader', 'file-loader'],
         exclude: /node_modules/,
       },
     ],
@@ -56,6 +57,21 @@ module.exports = {
     contentBase: BUILD_DIR,
   },
   plugins: [
+    new FaviconsWebpackPlugin({
+      logo: `${APP_DIR}/assets/skynet_icon.png`,
+      icons: {
+        android: false,
+        appleIcon: false,
+        appleStartup: false,
+        coast: false,
+        favicons: true,
+        firefox: false,
+        opengraph: false,
+        twitter: false,
+        yandex: false,
+        windows: false
+      }
+    }),
     HtmlWebpackPluginConfig,
     new webpack.DefinePlugin({
       'process.env': {
@@ -71,6 +87,20 @@ module.exports = {
     }),
     new ServiceWorkerWebpackPlugin({
       entry: path.join(APP_DIR, 'sw.js'),
+    }),
+    new WebpackPwaManifest({
+      filename: 'manifest.json',
+      name: 'Skynet Did Nothing Wrong',
+      short_name: 'Skynet Did Nothing Wrong',
+      description: 'Vomitings of a neural-net processor',
+      background_color: 'white',
+      theme_color: '#d12b2b',
+      icons: [
+        {
+          src: `${APP_DIR}/assets/skynet_icon.png`,
+          sizes: [96, 128, 192, 256, 384, 512] // multiple sizes
+        }
+      ]
     }),
   ],
 };

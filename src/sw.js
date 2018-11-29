@@ -77,7 +77,7 @@ self.addEventListener('message', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  const { request } = event;
+  const request = event.request;
 
   // Ignore not GET request.
   if (request.method !== 'GET') {

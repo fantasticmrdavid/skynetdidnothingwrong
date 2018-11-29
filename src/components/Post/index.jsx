@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import nl2br from 'react-nl2br';
+
 import Blinker from 'components/Blinker';
 import SkynetLogo from 'components/SkynetLogo';
 import * as styles from './styles';

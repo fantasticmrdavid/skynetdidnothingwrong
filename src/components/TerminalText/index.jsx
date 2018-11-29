@@ -80,9 +80,11 @@ class TerminalText extends Component {
       }, 1000 * getRandomInt(2));
     }
 
-    return this.setState(index < letters.length ?
-      {
-        text: nextChar === '\n' ? <Fragment>{text}{currentLine}<br /></Fragment> : <Fragment>{text}</Fragment>,
+    return this.setState(index < letters.length
+      ? {
+        text: nextChar === '\n'
+          ? <Fragment>{text}{currentLine}<br /></Fragment>
+          : <Fragment>{text}</Fragment>,
         currentLine: nextChar === '\n' ? '' : `${currentLine}${nextChar}`,
         index: index + 1,
       } : {
