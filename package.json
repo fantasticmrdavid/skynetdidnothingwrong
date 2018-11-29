@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@babel/core": "7.1.6",
-    "@rematch/core": "1.0.6",
     "acorn": "6.0.4",
     "babel-plugin-ramda": "1.6.2",
     "es6-promise": "4.1.1",
