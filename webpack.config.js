@@ -21,6 +21,8 @@ const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   inject: 'body',
 });
 
+const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
+
 module.exports = {
   entry: `${APP_DIR}/index.jsx`,
   output: {
@@ -66,6 +68,9 @@ module.exports = {
         FIREBASE_STORAGE_BUCKET: JSON.stringify(FIREBASE_STORAGE_BUCKET),
         FIREBASE_MESSAGING_SENDER_ID: JSON.stringify(FIREBASE_MESSAGING_SENDER_ID),
       },
+    }),
+    new ServiceWorkerWebpackPlugin({
+      entry: path.join(APP_DIR, 'sw.js'),
     }),
   ],
 };
