@@ -46,11 +46,10 @@ class LoadingDialog extends Component {
   }
 
   loadNextMessage() {
-    const { readyCheck } = this.props;
-    const { complete } = this.state;
+    const { readyCheck, loading } = this.props;
     readyCheck();
 
-    if (!complete) {
+    if (loading) {
       this.setState({
         loadingMessage: loadingMessages[Math.floor(Math.random() * loadingMessages.length)],
       });
