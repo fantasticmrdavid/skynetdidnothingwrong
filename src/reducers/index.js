@@ -1,13 +1,8 @@
 import { combineReducers } from 'redux';
 import { firebaseReducer } from 'react-redux-firebase';
-import { RESET_APP } from 'Constants';
+import { connectRouter } from 'connected-react-router';
 
-const appReducers = combineReducers({
+export default history => combineReducers({
   firebase: firebaseReducer,
+  router: connectRouter(history),
 });
-
-const reducers = (state, action) => {
-  return appReducers(action.type === RESET_APP ? undefined : state, action);
-};
-
-export default reducers;

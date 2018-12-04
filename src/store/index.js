@@ -3,8 +3,8 @@ import thunk from 'redux-thunk';
 import firebase from 'firebase/app';
 import { reduxFirebase, getFirebase } from 'react-redux-firebase';
 import createHistory from 'history/createBrowserHistory';
-import { routerMiddleware } from 'react-router-redux';
-import reducers from 'reducers';
+import { routerMiddleware } from 'connected-react-router';
+import createRootReducer from 'reducers';
 import 'firebase/database';
 
 const {
@@ -47,6 +47,6 @@ const createStoreWithFirebase = composeEnhancersClient(
 )(createStore);
 
 // Create store with reducers and initial state
-const store = createStoreWithFirebase(reducers);
+const store = createStoreWithFirebase(createRootReducer(history));
 
 export { store, history };

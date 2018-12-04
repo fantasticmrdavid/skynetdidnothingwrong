@@ -8,7 +8,8 @@
     "start": "NODE_ENV=development&& webpack-dev-server",
     "test": "chmod +x ./test.sh; ./test.sh",
     "lint": "./node_modules/.bin/eslint -c .eslintrc.json src/**/*.js  src/**/*.jsx",
-    "build": "NODE_ENV=production&& webpack --mode production"
+    "build": "NODE_ENV=production&& webpack --mode production",
+    "clean": "rm -rf ./node_modules"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "@babel/core": "7.1.6",
     "acorn": "6.0.4",
     "babel-plugin-ramda": "1.6.2",
+    "connected-react-router": "5.0.1",
     "es6-promise": "4.1.1",
     "firebase": "5.3.1",
     "fontfaceobserver": "2.0.13",
@@ -35,7 +37,6 @@
     "react-redux": "5.1.1",
     "react-redux-firebase": "2.1.7",
     "react-router": "4.3.1",
-    "react-router-redux": "5.0.0-alpha.9",
     "redux": "4.0.1",
     "redux-thunk": "2.3.0",
     "serviceworker-webpack-plugin": "1.0.1",
