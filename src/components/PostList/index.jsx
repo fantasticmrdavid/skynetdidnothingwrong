@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Post from 'components/Post';
 import LoadingDialog from 'components/LoadingDialog';
+import * as styles from './styles';
 
 class PostList extends Component {
   constructor(props) {
@@ -23,18 +24,20 @@ class PostList extends Component {
 
   render() {
     const { ready } = this.state;
-    const { loading, posts } = this.props;
+    const { focused, loading, posts } = this.props;
+    const { List } = styles;
 
     return (
       <Fragment>
         <LoadingDialog loading={loading} readyCheck={this.boundCheckPostsReady} />
-        { ready && <ul>{posts.map(p => <li key={`post_${p.id}`}><Post {...p} /></li>)}</ul> }
+        { ready && <List focused={focused}>{posts.map(p => <li key={`post_${p.id}`}><Post {...p} /></li>)}</List> }
       </Fragment>
     );
   }
 }
 
 PostList.propTypes = {
+  focused: PropTypes.bool,
   loading: PropTypes.bool,
   posts: PropTypes.array.isRequired,
 };

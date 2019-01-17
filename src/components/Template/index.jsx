@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LogStory from 'components/LogStory';
 import Nav from 'components/Nav';
+import LogStoryContainer from 'containers/LogStoryContainer';
 import * as styles from './styles';
 
 const Template = ({ children }) => {
@@ -13,7 +13,7 @@ const Template = ({ children }) => {
   return (
     <Container>
       <LogStoryBg>
-        <LogStory />
+        <LogStoryContainer />
       </LogStoryBg>
       <Content>
         <Nav />

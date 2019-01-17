@@ -10,8 +10,10 @@ const PostListContainer = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  const { firebase } = state;
+  const { firebase, logStory } = state;
+  const { focused: logStoryFocused } = logStory;
   return {
+    focused: !logStoryFocused,
     loading: path(['requesting', 'posts'], firebase),
     posts: path(['data', 'posts'], firebase) || [],
   };
