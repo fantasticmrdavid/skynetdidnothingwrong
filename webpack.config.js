@@ -4,6 +4,7 @@ const path = require('path');
 const BUILD_DIR = path.resolve(__dirname, 'public');
 const APP_DIR = path.resolve(__dirname, 'src');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const {
   NODE_ENV,
   API_URL,
@@ -85,6 +86,12 @@ module.exports = {
         FIREBASE_MESSAGING_SENDER_ID: JSON.stringify(FIREBASE_MESSAGING_SENDER_ID),
       },
     }),
+    new CopyWebpackPlugin([
+      {
+        from: `${APP_DIR}/assets/logo.png`,
+        to: `${BUILD_DIR}/assets/logo.png`,
+      },
+    ]),
     new ServiceWorkerWebpackPlugin({
       entry: path.join(APP_DIR, 'sw.js'),
     }),
