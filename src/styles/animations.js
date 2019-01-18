@@ -50,7 +50,7 @@ export const expand = keyframes`
     overflow: hidden;
   }
   100% {
-    max-height: 2000px;
+    max-height: 2500px;
   }
 `;
 
