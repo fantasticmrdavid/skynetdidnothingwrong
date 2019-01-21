@@ -27,6 +27,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
   entry: `${APP_DIR}/index.jsx`,
+  mode: NODE_ENV,
   output: {
     path: BUILD_DIR,
     publicPath: '/',

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import nl2br from 'react-nl2br';
 
 import Blinker from 'components/Blinker';
+import BorderTracer from 'components/BorderTracer';
 import SkynetLogo from 'components/SkynetLogo';
 import * as styles from './styles';
 
@@ -42,6 +43,8 @@ class Post extends Component {
     return (
       <Article expanded={expanded}>
         <Underlay />
+        <BorderTracer direction="left" />
+        <BorderTracer direction="right" />
         <ContentContainer>
           <Title>{ title }</Title>
           <Meta>{ new Date(createdAt).toLocaleDateString() }</Meta>
