@@ -11,6 +11,12 @@ export const Content = styled.main`
   padding-bottom: 3em;
 `;
 
+export const HeartbeatMonitorWrapper = styled.div`
+  position: fixed;
+  bottom: 0px;
+  left: calc(50% - 580px);
+`;
+
 export const LogStoryBg = styled.div`
   position: fixed;
   overflow: hidden;

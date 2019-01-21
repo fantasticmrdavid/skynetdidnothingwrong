@@ -16,19 +16,37 @@ class LogStory extends Component {
   }
 
   loadNewStory() {
+    const { resetHeartRate } = this.props;
     const story = getRandomElement(storyData);
-    this.state = {
+
+    this.setState({
       story: story.content.reduce((acc, l) => acc.concat(`\n${l}`)),
-    };
+    });
+
+    resetHeartRate();
   }
 
   render() {
-    const { focused, hoverOn, hoverOff } = this.props;
+    const {
+      focused,
+      hoverOn,
+      hoverOff,
+      lowerHeartRate,
+      raiseHeartRate,
+    } = this.props;
     const { story } = this.state;
     const { Story } = styles;
     return (
       <Story focused={focused} onMouseOver={hoverOn} onMouseLeave={hoverOff} onFocus={hoverOn}>
-        <TerminalText blinker resetOnComplete onComplete={this.boundLoadNewStory}>{story}</TerminalText>
+        <TerminalText
+          blinker
+          lowerHeartRate={lowerHeartRate}
+          onComplete={this.boundLoadNewStory}
+          resetOnComplete
+          raiseHeartRate={raiseHeartRate}
+        >
+          {story}
+        </TerminalText>
       </Story>
     );
   }
@@ -38,6 +56,9 @@ LogStory.propTypes = {
   focused: PropTypes.bool,
   hoverOn: PropTypes.func.isRequired,
   hoverOff: PropTypes.func.isRequired,
+  lowerHeartRate: PropTypes.func.isRequired,
+  resetHeartRate: PropTypes.func.isRequired,
+  raiseHeartRate: PropTypes.func.isRequired,
 };
 
 export default LogStory;

@@ -46,7 +46,9 @@ class TerminalText extends Component {
     const {
       children,
       onComplete,
+      lowerHeartRate,
       resetOnComplete,
+      raiseHeartRate,
     } = this.props;
 
     if (complete) {
@@ -78,6 +80,20 @@ class TerminalText extends Component {
         });
         this.boundStartTypewriter();
       }, 1000 * getRandomInt(2));
+    }
+
+    if (nextChar === '\b') {
+      raiseHeartRate();
+      this.setState({
+        index: index + 1,
+      });
+    }
+
+    if (nextChar === '\r') {
+      lowerHeartRate();
+      this.setState({
+        index: index + 1,
+      });
     }
 
     return this.setState(index < letters.length
@@ -128,8 +144,10 @@ class TerminalText extends Component {
 TerminalText.propTypes = {
   children: PropTypes.node.isRequired,
   blinker: PropTypes.bool,
+  lowerHeartRate: PropTypes.func,
   onComplete: PropTypes.func,
   resetOnComplete: PropTypes.bool,
+  raiseHeartRate: PropTypes.func,
   speed: PropTypes.number,
 };
 
